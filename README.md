@@ -5,7 +5,7 @@
 1. Create a project based on this boilerplate.
 
 ```
-$ npx https://github.com/hseoy/chrome-extension-react-typescript-boilerplate <project name>
+$ npx degit https://github.com/hseoy/chrome-extension-react-typescript-boilerplate <project name>
 ```
 
 2. install the dependencies.
