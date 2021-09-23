@@ -1,0 +1,7 @@
+{
+  "*.{js,jsx,ts,tsx}": [
+    "eslint --ext .tsx --ext .ts --fix",
+    "prettier --write src"
+  ],
+  "*.{json,md}": ["prettier --write"]
+}

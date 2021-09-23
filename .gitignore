@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables file
+.env
+
+# Folder view configuration files
+.DS_Store
+
+# Application specific files
+.sass-cache
+.vscode
+
+# Dependency directories
+node_modules/
+
+# Build Files
+dist 
