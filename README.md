@@ -1,5 +1,18 @@
 # Chrome Extension with React & TypeScript
 
+## Built with
+
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Webpack](https://webpack.js.org/)
+- [Jest](https://jestjs.io/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Babel](https://babeljs.io/)
+- [SCSS](https://sass-lang.com/)
+- [Husky](https://typicode.github.io/husky/#/)
+- [Lint-Staged](https://github.com/okonet/lint-staged)
+
 ## Getting started
 
 1. Create a project based on this boilerplate.
