@@ -4,7 +4,7 @@
   "description": "chrome extension boilerplate using react, typescript, webpack",
   "main": "index.js",
   "repository": "https://github.com/hseoy/chrome-extension-react-typescript-boilerplate.git",
-  "author": "",
+  "author": "Your Name <your.name@example.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
