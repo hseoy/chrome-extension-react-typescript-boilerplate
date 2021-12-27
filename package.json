@@ -2,7 +2,6 @@
   "name": "chrome-extension-react-typescript-boilerplate",
   "version": "1.0.0",
   "description": "chrome extension boilerplate using react, typescript, webpack",
-  "main": "index.js",
   "repository": "https://github.com/hseoy/chrome-extension-react-typescript-boilerplate.git",
   "author": "Your Name <your.name@example.com>",
   "license": "MIT",
