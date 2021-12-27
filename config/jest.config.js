@@ -1,8 +1,9 @@
 module.exports = {
-  testEnvironment: 'node',
-  coverageReporters: ['html', 'text'],
-  coverageDirectory: 'coverage',
-  roots: ['src'],
+  rootDir: '../',
+  testEnvironment: 'jsdom',
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },

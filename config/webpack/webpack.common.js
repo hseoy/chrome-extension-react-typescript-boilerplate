@@ -1,17 +1,13 @@
 'use strict';
 
-const env = require('./utils/env.js');
+const env = require('./env.js');
+const paths = require('./paths.js');
 
-const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
-const rootDir = path.join(__dirname, '..');
-const srcDir = path.join(rootDir, 'src');
-const publicDir = path.join(rootDir, 'public');
 
 const fileExtensions = ['eot', 'otf', 'ttf', 'woff', 'woff2'];
 const imageFileExtensions = ['bmp', 'jpg', 'jpeg', 'png', 'gif', 'svg'];
@@ -22,13 +18,13 @@ const imageInlineSizeLimit = process.env.IMAGE_INLINE_SIZE_LIMIT
 
 module.exports = {
   entry: {
-    popup: path.join(srcDir, 'extensions', 'Popup', 'index.tsx'),
-    newtab: path.join(srcDir, 'extensions', 'NewTab', 'index.tsx'),
-    background: path.join(srcDir, 'extensions', 'Background', 'index.ts'),
-    contentScript: path.join(srcDir, 'extensions', 'ContentScript', 'index.ts'),
+    popup: paths.appPopup,
+    newtab: paths.appNewTab,
+    background: paths.appBackground,
+    contentScript: paths.appContentScript,
   },
   output: {
-    path: path.join(rootDir, 'dist'),
+    path: paths.appBuild,
     filename: '[name].js',
   },
   module: {
@@ -36,7 +32,13 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         use: [
-          'babel-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: true,
+              configFile: paths.babelConfig,
+            },
+          },
           {
             loader: 'ts-loader',
             options: {
@@ -76,53 +78,41 @@ module.exports = {
     new CleanWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin({ typescript: true }),
     new webpack.DefinePlugin(env.stringified),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'public/manifest.json',
-          to: path.join(rootDir, 'dist'),
-          force: true,
-        },
-      ],
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'public/icon16.png',
-          to: path.join(rootDir, 'dist'),
-          force: true,
-        },
-      ],
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'public/icon48.png',
-          to: path.join(rootDir, 'dist'),
-          force: true,
-        },
-      ],
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'public/icon128.png',
-          to: path.join(rootDir, 'dist'),
-          force: true,
-        },
-      ],
-    }),
     new HtmlWebpackPlugin({
-      template: path.join(publicDir, 'newtab.html'),
+      template: paths.appNewTabHtml,
       filename: 'newtab.html',
       chunks: ['newtab'],
       cache: false,
     }),
     new HtmlWebpackPlugin({
-      template: path.join(publicDir, 'popup.html'),
+      template: paths.appPopupHtml,
       filename: 'popup.html',
       chunks: ['popup'],
       cache: false,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public/manifest.json',
+          to: '.',
+          force: true,
+        },
+      ],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: paths.appPublic,
+          to: '.',
+          globOptions: {
+            ignore: [
+              '*/**/manifest.json',
+              '*/**/newtab.html',
+              '*/**/popup.html',
+            ],
+          },
+        },
+      ],
     }),
   ],
 };
