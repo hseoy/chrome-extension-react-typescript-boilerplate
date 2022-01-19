@@ -8,8 +8,8 @@
   "private": true,
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "env-cmd webpack --mode development --watch --config ./config/webpack.config.js",
-    "build": "env-cmd webpack --mode production --progress --config ./config/webpack.config.js",
+    "dev": "env-cmd --silent webpack --mode development --watch --config ./config/webpack.config.js",
+    "build": "env-cmd --silent webpack --mode production --progress --config ./config/webpack.config.js",
     "lint": "eslint --ext .tsx --ext .ts src",
     "lint:fix": "eslint --ext .tsx --ext .ts src --fix",
     "style": "prettier src",
