@@ -39,4 +39,5 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-console': 'off',
   },
+  ignorePatterns: ['node_modules/', 'dist', '**/*.js'],
 };
